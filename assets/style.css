@@ -134,8 +134,12 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+/* Erreurs car body est vide
 body {
 }
+*/
+
 section {
   margin-block: 6em;
 }
