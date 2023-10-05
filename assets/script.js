@@ -17,9 +17,42 @@ const slides = [
   },
 ];
 
+/*
+
+let currentIndex = 0;
+const maxSlides = slides.length - 1;
+
+console.log(slides, slides.length - 1, slides[currentIndex], slides[currentIndex].tagLine);
+
+*/
+
 const arrowLeft = document.querySelector(".arrow_left");
 const arrowRight = document.querySelector(".arrow_right");
+const bannerImg = document.querySelector("#banner img");
+const bannerTxt = document.querySelector("#banner p");
 
-/* Arrows */
+let i = 0;
+const maxSlides = slides.length;
 
-arrowLeft.addEventListener("click");
+function innerSlides() {
+  bannerImg.innerHTML = slides[i].image;
+  bannerTxt.innerHTML = slides[i].tagLine;
+}
+
+arrowLeft.addEventListener("click", function () {
+  if (i == 0) {
+    i = maxSlides - 1;
+  } else {
+    i--;
+  }
+  innerSlides();
+});
+
+arrowRight.addEventListener("click", function () {
+  if (i == maxSlides - 1) {
+    i = 0;
+  } else {
+    i++;
+  }
+  innerSlides();
+});
