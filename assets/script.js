@@ -64,12 +64,12 @@ function selected() {
 /* bannerDots */
 function bannerDots() {
   const dots = document.querySelector(".dots");
-  for (let i = 0; i < maxSlides; i++) {
+  for (let currentSlide = 0; currentSlide < maxSlides; currentSlide++) {
     const dot = document.createElement("span");
     dot.classList.add("dot");
     dots.appendChild(dot);
-    if (i == 0) {
-      dots.children[i].classList.add("dot_selected");
+    if (currentSlide == 0) {
+      dots.children[currentSlide].classList.add("dot_selected");
     }
   }
 }
