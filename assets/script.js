@@ -17,42 +17,65 @@ const slides = [
   },
 ];
 
-/*
-
-let currentIndex = 0;
-const maxSlides = slides.length - 1;
-
-console.log(slides, slides.length - 1, slides[currentIndex], slides[currentIndex].tagLine);
-
-*/
-
 const arrowLeft = document.querySelector(".arrow_left");
 const arrowRight = document.querySelector(".arrow_right");
 const bannerImg = document.querySelector("#banner img");
 const bannerTxt = document.querySelector("#banner p");
 
-let i = 0;
+let currentSlide = 0;
 const maxSlides = slides.length;
 
-function innerSlides() {
-  bannerImg.innerHTML = slides[i].image;
-  bannerTxt.innerHTML = slides[i].tagLine;
+/* bannerSlides */
+function bannerSlides() {
+  bannerImg.src = "/assets/images/slideshow/" + slides[currentSlide].image;
+  bannerTxt.innerHTML = slides[currentSlide].tagLine;
+  selected();
 }
 
+/* arrowLeft */
 arrowLeft.addEventListener("click", function () {
-  if (i == 0) {
-    i = maxSlides - 1;
+  if (currentSlide == 0) {
+    currentSlide = maxSlides - 1;
   } else {
-    i--;
+    currentSlide--;
   }
-  innerSlides();
+  bannerSlides();
 });
 
+/* arrowRight */
 arrowRight.addEventListener("click", function () {
-  if (i == maxSlides - 1) {
-    i = 0;
+  if (currentSlide == maxSlides - 1) {
+    currentSlide = 0;
   } else {
-    i++;
+    currentSlide++;
   }
-  innerSlides();
+  bannerSlides();
 });
+
+/* selected */
+function selected() {
+  const dot = document.getElementsByClassName("dot");
+  for (let currentSlide = 0; currentSlide < dot.length; currentSlide++) {
+    dot[currentSlide].classList.remove("dot_selected");
+  }
+  dot[currentSlide].classList.add("dot_selected");
+}
+
+/* bannerDots */
+function bannerDots() {
+  const dots = document.querySelector(".dots");
+  for (let i = 0; i < maxSlides; i++) {
+    const dot = document.createElement("span");
+    dot.id = "span" + i;
+    dot.addEventListener("click", function (event) {
+      currentSlide = Number(event.target.id.replace("span", ""));
+      bannerSlides();
+    });
+    dot.classList.add("dot");
+    dots.appendChild(dot);
+    if (i == 0) {
+      dots.children[i].classList.add("dot_selected");
+    }
+  }
+}
+bannerDots();
