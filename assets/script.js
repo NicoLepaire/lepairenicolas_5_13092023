@@ -66,11 +66,6 @@ function bannerDots() {
   const dots = document.querySelector(".dots");
   for (let i = 0; i < maxSlides; i++) {
     const dot = document.createElement("span");
-    dot.id = "span" + i;
-    dot.addEventListener("click", function (event) {
-      currentSlide = Number(event.target.id.replace("span", ""));
-      bannerSlides();
-    });
     dot.classList.add("dot");
     dots.appendChild(dot);
     if (i == 0) {
