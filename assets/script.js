@@ -54,23 +54,21 @@ arrowRight.addEventListener("click", function () {
 
 /* selected */
 function selected() {
-  const dot = document.getElementsByClassName("dot");
-  for (let currentSlide = 0; currentSlide < dot.length; currentSlide++) {
-    dot[currentSlide].classList.remove("dot_selected");
+  const dots = document.getElementsByClassName("dot");
+  for (const dot of dots) {
+    dot.classList.remove("dot_selected");
   }
-  dot[currentSlide].classList.add("dot_selected");
+  dots[currentSlide].classList.add("dot_selected");
 }
 
 /* bannerDots */
 function bannerDots() {
   const dots = document.querySelector(".dots");
-  for (let currentSlide = 0; currentSlide < maxSlides; currentSlide++) {
+  for (const slide of slides) {
     const dot = document.createElement("span");
     dot.classList.add("dot");
     dots.appendChild(dot);
-    if (currentSlide == 0) {
-      dots.children[currentSlide].classList.add("dot_selected");
-    }
   }
+  dots.children[0].classList.add("dot_selected");
 }
 bannerDots();
